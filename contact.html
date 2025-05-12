@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - منصة تعليمية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">إنجليشي</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="courses.html">الدورات</a></li>
+                    <li><a href="about.html">عن المنصة</a></li>
+                    <li><a href="contact.html" class="active">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1 data-aos="fade-in">تواصل معنا</h1>
+                <p data-aos="fade-in" data-aos-delay="200">نحن هنا للإجابة على جميع استفساراتك ومساعدتك في رحلة تعلم اللغة الإنجليزية</p>
+            </div>
+        </div>
+        <div class="wave-shape">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,181.3C384,203,480,213,576,202.7C672,192,768,160,864,160C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Contact Content Section -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info-card" data-aos="fade-in">
+                    <div class="contact-info-header">
+                        <h2>معلومات التواصل</h2>
+                        <p>يمكنك التواصل معنا من خلال الطرق التالية</p>
+                    </div>
+                    <div class="contact-info-list">
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="details">
+                                <h4>البريد الإلكتروني</h4>
+                                <p>info@englishi.com</p>
+                                <p>support@englishi.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="details">
+                                <h4>رقم الهاتف</h4>
+                                <p>+123 456 7890</p>
+                                <p>+123 456 7891</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="details">
+                                <h4>العنوان</h4>
+                                <p>الاردن</p>
+                                <p>عمان</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="details">
+                                <h4>ساعات العمل</h4>
+                                <p>الأحد - الخميس: 9:00 صباحاً - 5:00 مساءً</p>
+                                <p>الجمعة - السبت: مغلق</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links-large">
+                        <h4>تابعنا على</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-card" data-aos="fade-in" data-aos-delay="100">
+                    <h2>أرسل رسالة</h2>
+                    <p>يرجى ملء النموذج أدناه وسنقوم بالرد عليك في أقرب وقت ممكن</p>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">الموضوع</label>
+                            <input type="text" id="subject" name="subject" placeholder="أدخل موضوع الرسالة" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" rows="6" placeholder="اكتب رسالتك هنا..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>موقعنا</h2>
+                <p>يمكنك زيارتنا في موقعنا</p>
+            </div>
+        </div>
+        <div class="map-container" data-aos="fade-in">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d463876.9949580332!2d46.54605341796875!3d24.725319699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1620673788154!5m2!1sen!2sus" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>أسئلة شائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-in">
+                    <div class="faq-question">
+                        <h3>كيف يمكنني التسجيل في الدورات؟</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكنك التسجيل في الدورات من خلال إنشاء حساب على المنصة، ثم اختيار الدورة المناسبة لك والضغط على زر "التسجيل في الدورة".</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-in" data-aos-delay="100">
+                    <div class="faq-question">
+                        <h3>هل يمكنني الوصول إلى الدورات بعد انتهائها؟</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، بمجرد التسجيل في الدورة ستتمكن من الوصول إلى جميع المحتويات الخاصة بها لمدة سنة كاملة.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-in" data-aos-delay="200">
+                    <div class="faq-question">
+                        <h3>كيف أحصل على شهادة إتمام الدورة؟</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>بعد إكمال جميع الدروس والأنشطة في الدورة، سيتم إصدار شهادة إلكترونية لك تلقائياً يمكنك تحميلها وطباعتها.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-in" data-aos-delay="300">
+                    <div class="faq-question">
+                        <h3>هل هناك خصومات للمجموعات؟</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم خصومات خاصة للمجموعات والمؤسسات. يرجى التواصل معنا عبر البريد الإلكتروني للحصول على مزيد من المعلومات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text" data-aos="fade-in">
+                    <h2>اشترك في النشرة البريدية</h2>
+                    <p>احصل على آخر الأخبار والتحديثات والعروض الحصرية مباشرة إلى بريدك الإلكتروني</p>
+                </div>
+                <form class="newsletter-form" data-aos="fade-in" data-aos-delay="100">
+                    <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary">اشترك الآن</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>إنجليشي</h4>
+                    <p>منصة تعليمية متخصصة في تعليم اللغة الإنجليزية بطرق مبتكرة وفعالة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="courses.html">الدورات</a></li>
+                        <li><a href="about.html">عن المنصة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>الدورات</h4>
+                    <ul>
+                        <li><a href="#">المستوى المبتدئ</a></li>
+                        <li><a href="#">المستوى المتوسط</a></li>
+                        <li><a href="#">المستوى المتقدم</a></li>
+                        <li><a href="#">المحادثة والتحدث</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@englishi.com</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>+123 456 7890</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>الاردن، عمان</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 منصة إنجليشي لتعليم اللغة الإنجليزية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isOpen = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // If it wasn't open before, open it now
+                if (!isOpen) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت ممكن.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

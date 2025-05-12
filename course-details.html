@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة التعليم الإلكتروني | تفاصيل الدورة</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Course Details Specific Styles */
+    .course-header {
+      padding: 50px 0;
+      background: linear-gradient(to right, var(--edu-lavender), var(--edu-light-blue));
+      position: relative;
+    }
+    
+    .course-header .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .course-thumbnail {
+      width: 100%;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .course-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .course-info {
+      color: white;
+    }
+    
+    .course-info .course-level {
+      display: inline-block;
+      margin-bottom: 10px;
+      position: static;
+    }
+    
+    .course-info h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    
+    .course-info p {
+      margin-bottom: 20px;
+      opacity: 0.9;
+      font-size: 18px;
+    }
+    
+    .course-meta-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+    }
+    
+    .meta-item i {
+      margin-left: 10px;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+    
+    .enrollment-options {
+      margin-top: 30px;
+    }
+    
+    .enrollment-options .btn {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .course-content-section {
+      padding: 70px 0;
+    }
+    
+    .course-content-wrapper {
+      display: grid;
+      grid-template-columns: 7fr 3fr;
+      gap: 40px;
+    }
+    
+    .course-tabs {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .course-tabs .tab {
+      display: inline-block;
+      padding: 12px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .course-tabs .tab.active {
+      color: var(--edu-blue);
+    }
+    
+    .course-tabs .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--edu-blue);
+      border-radius: 3px 3px 0 0;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .lesson-list {
+      border: 1px solid #eee;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .unit {
+      border-bottom: 1px solid #eee;
+    }
+    
+    .unit-header {
+      padding: 15px 20px;
+      background-color: var(--edu-soft-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .unit-header:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .unit-header .toggle-icon {
+      transition: var(--transition);
+    }
+    
+    .unit.active .unit-header {
+      background-color: #f0f0f0;
+    }
+    
+    .unit.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+    
+    .unit-lessons {
+      display: none;
+    }
+    
+    .unit.active .unit-lessons {
+      display: block;
+    }
+    
+    .lesson {
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    
+    .lesson:hover {
+      background-color: var(--edu-soft-white);
+    }
+    
+    .lesson-title {
+      display: flex;
+      align-items: center;
+    }
+    
+    .lesson-icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: var(--edu-blue);
+    }
+    
+    .lesson-details {
+      display: flex;
+      align-items: center;
+      color: #777;
+      font-size: 14px;
+    }
+    
+    .lesson-details span {
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .lesson-details span i {
+      margin-left: 5px;
+    }
+    
+    .locked {
+      color: #777;
+    }
+    
+    .locked .lesson-title {
+      opacity: 0.7;
+    }
+    
+    .course-sidebar {
+      position: sticky;
+      top: 80px;
+    }
+    
+    .course-card-sidebar {
+      border: 1px solid #eee;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .price-section {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .course-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--edu-dark);
+    }
+    
+    .enroll-btn {
+      margin: 15px 0;
+    }
+    
+    .course-includes {
+      padding: 20px;
+    }
+    
+    .course-includes h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .includes-list {
+      margin-bottom: 20px;
+    }
+    
+    .includes-list li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .includes-list li i {
+      margin-left: 10px;
+      color: var(--edu-blue);
+      font-size: 14px;
+    }
+    
+    .instructor-section {
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .instructor-section h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .instructor-card {
+      display: flex;
+      align-items: center;
+    }
+    
+    .instructor-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-left: 15px;
+    }
+    
+    .instructor-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .instructor-info h4 {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .instructor-info p {
+      color: #777;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 992px) {
+      .course-header .container {
+        grid-template-columns: 1fr;
+      }
+      
+      .course-content-wrapper {
+        grid-template-columns: 1fr;
+      }
+      
+      .course-sidebar {
+        position: static;
+        margin-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">منصة التعليم</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="courses.html" class="active">الدورات</a></li>
+          <li><a href="about.html">عن المنصة</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-outline">تسجيل الدخول</a>
+        <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+      </div>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Course Header -->
+  <section class="course-header">
+    <div class="container">
+      <div class="course-info">
+        <div class="course-level beginner">مبتدئ</div>
+        <h1>أساسيات اللغة الإنجليزية</h1>
+        <p>تعلم أساسيات اللغة الإنجليزية من الصفر وبناء قاعدة قوية في فهم القواعد والمفردات والمهارات اللغوية</p>
+        
+        <div class="course-meta-info">
+          <div class="meta-item">
+            <i class="fas fa-book"></i>
+            <div>
+              <strong>10</strong> وحدات تعليمية
+            </div>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>20</strong> ساعة تعليمية
+            </div>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-user-graduate"></i>
+            <div>
+              <strong>520</strong> طالب
+            </div>
+          </div>
+        </div>
+        
+        <div class="enrollment-options">
+          <a href="#" class="btn btn-primary">التسجيل في الدورة</a>
+          <a href="#preview" class="btn btn-outline">مشاهدة المقدمة</a>
+        </div>
+      </div>
+      
+      <div class="course-thumbnail">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="أساسيات اللغة الإنجليزية">
+      </div>
+    </div>
+    <div class="wave-shape">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,181.3C1248,181,1344,235,1392,261.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- Course Content Section -->
+  <section class="course-content-section">
+    <div class="container">
+      <div class="course-content-wrapper">
+        <div class="course-main-content">
+          <!-- Tabs -->
+          <div class="course-tabs">
+            <div class="tab active" data-tab="overview">نظرة عامة</div>
+            <div class="tab" data-tab="curriculum">محتوى الدورة</div>
+            <div class="tab" data-tab="instructor">المعلمة</div>
+            <div class="tab" data-tab="reviews">التقييمات</div>
+          </div>
+          
+          <!-- Tab Contents -->
+          <div class="tab-content active" id="overview">
+            <h2>عن هذه الدورة</h2>
+            <p>تعد دورة أساسيات اللغة الإنجليزية خياراً مثالياً للمبتدئين الراغبين في تعلم اللغة الإنجليزية من الصفر. تم تصميم هذه الدورة لتقدم لك أساسيات متينة في القواعد، المفردات، النطق والمهارات الأساسية للتواصل.</p>
+            
+            <div class="my-4">
+              <h3>ماذا ستتعلم؟</h3>
+              <ul class="list-check">
+                <li>تكوين الجمل الأساسية باللغة الإنجليزية</li>
+                <li>تعلم الأزمنة الأساسية وكيفية استخدامها</li>
+                <li>اكتساب مفردات للاستخدام اليومي (أكثر من 500 كلمة)</li>
+                <li>تحسين النطق والمخارج الصوتية الصحيحة</li>
+                <li>إجراء محادثات بسيطة في مواقف الحياة اليومية</li>
+                <li>فهم النصوص الإنجليزية البسيطة والمتوسطة</li>
+              </ul>
+            </div>
+            
+            <div class="my-4">
+              <h3>متطلبات الدورة</h3>
+              <ul class="list-check">
+                <li>لا توجد متطلبات مسبقة - الدورة مصممة للمبتدئين تماماً</li>
+                <li>الرغبة في التعلم والالتزام بأداء التمارين والواجبات</li>
+              </ul>
+            </div>
+            
+            <div id="preview">
+              <h3>مقدمة الدورة</h3>
+              <div class="course-video-container">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="مقدمة الدورة" style="width:100%; border-radius:8px;">
+                <div class="video-play-button">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="curriculum">
+            <h2>محتوى الدورة</h2>
+            <p>تتكون الدورة من 10 وحدات تعليمية، كل وحدة تتضمن مجموعة من الدروس والتمارين:</p>
+            
+            <div class="lesson-list">
+              <!-- Unit 1 -->
+              <div class="unit active">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 1: مدخل إلى اللغة الإنجليزية</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons">
+                  <div class="lesson">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>مرحباً بك في الدورة</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 5 دقائق</span>
+                      <span><i class="fas fa-play"></i> مشاهدة</span>
+                    </div>
+                  </div>
+                  <div class="lesson">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-file-pdf"></i></div>
+                      <div>دليل الدورة التدريبية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-download"></i> تنزيل</span>
+                    </div>
+                  </div>
+                  <div class="lesson">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>الأبجدية الإنجليزية والأصوات الأساسية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 15 دقيقة</span>
+                      <span><i class="fas fa-play"></i> مشاهدة</span>
+                    </div>
+                  </div>
+                  <div class="lesson">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-tasks"></i></div>
+                      <div>اختبار سريع: الأبجدية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 10 دقائق</span>
+                      <span><i class="fas fa-pencil-alt"></i> اختبار</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Unit 2 -->
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 2: التعارف والتحيات</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons">
+                  <div class="lesson">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>عبارات التحية والتعارف</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 12 دقيقة</span>
+                      <span><i class="fas fa-lock"></i> مقفل</span>
+                    </div>
+                  </div>
+                  <div class="lesson locked">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-file-alt"></i></div>
+                      <div>مفردات وعبارات أساسية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 10 دقائق</span>
+                      <span><i class="fas fa-lock"></i> مقفل</span>
+                    </div>
+                  </div>
+                  <div class="lesson locked">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>محادثات تطبيقية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-clock"></i> 20 دقيقة</span>
+                      <span><i class="fas fa-lock"></i> مقفل</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Unit 3 -->
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 3: الضمائر والأفعال الأساسية</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons">
+                  <div class="lesson locked">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>الضمائر في اللغة الإنجليزية</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-lock"></i> مقفل</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Unit 4 -->
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 4: زمن المضارع البسيط</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons">
+                  <div class="lesson locked">
+                    <div class="lesson-title">
+                      <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                      <div>تكوين زمن المضارع البسيط</div>
+                    </div>
+                    <div class="lesson-details">
+                      <span><i class="fas fa-lock"></i> مقفل</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- More Units -->
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 5: الأسئلة والنفي</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+              
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 6: زمن المضارع المستمر</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+              
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 7: الظروف والصفات</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+              
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 8: زمن الماضي البسيط</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+              
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 9: التعبير عن المستقبل</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+              
+              <div class="unit">
+                <div class="unit-header">
+                  <div class="unit-title">الوحدة 10: المراجعة والتقييم النهائي</div>
+                  <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="unit-lessons"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="instructor">
+            <h2>المعلمة</h2>
+            <div class="instructor-detail">
+              <div class="instructor-profile">
+                <div class="instructor-avatar">
+                  <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="نورة الأحمد">
+                </div>
+                <div class="instructor-bio">
+                  <h3>نورة الأحمد</h3>
+                  <p class="instructor-title">مدرسة لغة إنجليزية معتمدة</p>
+                  <div class="instructor-stats">
+                    <div class="stat-item">
+                      <i class="fas fa-star"></i>
+                      <span>4.8 متوسط التقييم</span>
+                    </div>
+                    <div class="stat-item">
+                      <i class="fas fa-user-graduate"></i>
+                      <span>1,240+ طالب</span>
+                    </div>
+                    <div class="stat-item">
+                      <i class="fas fa-play-circle"></i>
+                      <span>6 دورات</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="instructor-description">
+                <p>الأستاذة نورة الأحمد مدرسة لغة إنجليزية ذات خبرة 10 سنوات في تدريس اللغة الإنجليزية لمختلف المستويات. حاصلة على شهادة CELTA من جامعة كامبريدج وماجستير في تعليم اللغة الإنجليزية من جامعة الملك سعود.</p>
+                <p>تتميز بأسلوبها التفاعلي وقدرتها على تبسيط المفاهيم اللغوية المعقدة وجعلها في متناول جميع المستويات. قامت بتدريس أكثر من 1000 طالب خلال مسيرتها التعليمية.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-content" id="reviews">
+            <h2>تقييمات الطلاب</h2>
+            <div class="course-rating-summary">
+              <div class="average-rating">
+                <div class="rating-number">4.8</div>
+                <div class="rating-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="total-ratings">284 تقييم</div>
+              </div>
+              <div class="rating-breakdown">
+                <div class="rating-bar">
+                  <div class="rating-label">5 نجوم</div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 78%"></div>
+                  </div>
+                  <div class="rating-percent">78%</div>
+                </div>
+                <div class="rating-bar">
+                  <div class="rating-label">4 نجوم</div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 15%"></div>
+                  </div>
+                  <div class="rating-percent">15%</div>
+                </div>
+                <div class="rating-bar">
+                  <div class="rating-label">3 نجوم</div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 5%"></div>
+                  </div>
+                  <div class="rating-percent">5%</div>
+                </div>
+                <div class="rating-bar">
+                  <div class="rating-label">2 نجوم</div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 2%"></div>
+                  </div>
+                  <div class="rating-percent">2%</div>
+                </div>
+                <div class="rating-bar">
+                  <div class="rating-label">1 نجمة</div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 0%"></div>
+                  </div>
+                  <div class="rating-percent">0%</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="student-reviews">
+              <div class="review">
+                <div class="reviewer">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="أحمد">
+                  <div>
+                    <h4>أحمد محمد</h4>
+                    <div class="review-date">منذ 3 أسابيع</div>
+                  </div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p>دورة ممتازة للمبتدئين! استفدت كثيراً من شرح الأستاذة نورة البسيط والواضح. التمارين والاختبارات ساعدتني على تثبيت المعلومات. أنصح بها بشدة لكل من يرغب في تعلم الإنجليزية من البداية.</p>
+              </div>
+              
+              <div class="review">
+                <div class="reviewer">
+                  <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="فاطمة">
+                  <div>
+                    <h4>فاطمة علي</h4>
+                    <div class="review-date">منذ شهر</div>
+                  </div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p>الدورة منظمة بشكل رائع والمحتوى مفيد جداً. أحببت تقسيم المواضيع والتدرج في المستوى. الفيديوهات قصيرة وتشرح النقاط بوضوح. أصبحت الآن قادرة على فهم وتكوين جمل بسيطة بعد أن كنت لا أعرف شيئاً.</p>
+              </div>
+              
+              <div class="review">
+                <div class="reviewer">
+                  <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="خالد">
+                  <div>
+                    <h4>خالد العمري</h4>
+                    <div class="review-date">منذ شهرين</div>
+                  </div>
+                </div>
+                <div class="review-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <p>دورة ممتازة للمبتدئين، لكن كنت أتمنى المزيد من التمارين العملية. شرح المعلمة واضح وبسيط ويساعد على فهم القواعد الأساسية بسهولة. المحتوى النظري قوي لكن يحتاج لمزيد من التطبيق العملي.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Course Sidebar -->
+        <div class="course-sidebar">
+          <div class="course-card-sidebar">
+            <div class="price-section">
+              <div class="course-price">299 ريال</div>
+              <a href="#" class="btn btn-primary w-100 enroll-btn">التسجيل في الدورة</a>
+              <p class="guarantee">ضمان استرداد المال خلال 30 يوم</p>
+            </div>
+            <div class="course-includes">
+              <h3>تتضمن هذه الدورة:</h3>
+              <ul class="includes-list">
+                <li><i class="fas fa-play-circle"></i> 25 فيديو تعليمي</li>
+                <li><i class="fas fa-file-pdf"></i> 15 ملف PDF للقراءة</li>
+                <li><i class="fas fa-pencil-alt"></i> 10 اختبارات تفاعلية</li>
+                <li><i class="fas fa-certificate"></i> شهادة إتمام</li>
+                <li><i class="fas fa-infinity"></i> وصول مدى الحياة</li>
+                <li><i class="fas fa-mobile-alt"></i> إمكانية الوصول عبر الموبايل</li>
+              </ul>
+              
+              <h3>مشاركة الدورة:</h3>
+              <div class="social-share">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+              </div>
+            </div>
+            <div class="instructor-section">
+              <h3>المعلمة</h3>
+              <div class="instructor-card">
+                <div class="instructor-avatar">
+                  <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="نورة الأحمد">
+                </div>
+                <div class="instructor-info">
+                  <h4>نورة الأحمد</h4>
+                  <p>مدرسة لغة إنجليزية معتمدة</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Courses -->
+  <section class="related-courses">
+    <div class="container">
+      <div class="section-header">
+        <h2>دورات ذات صلة</h2>
+        <p>استكشف المزيد من دوراتنا المميزة</p>
+      </div>
+      
+      <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="المحادثة الإنجليزية">
+            <div class="course-level intermediate">متوسط</div>
+          </div>
+          <div class="course-content">
+            <h3>المحادثة الإنجليزية</h3>
+            <p>تعلم كيفية إجراء محادثات باللغة الإنجليزية بطلاقة وثقة</p>
+            <div class="course-meta">
+              <span><i class="fas fa-book"></i> 8 وحدات</span>
+              <span><i class="fas fa-clock"></i> 15 ساعة</span>
+            </div>
+            <a href="course-details.html" class="btn btn-outline w-100">عرض التفاصيل</a>
+          </div>
+        </div>
+        
+        <!-- Course 2 -->
+        <div class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="الكتابة الإنجليزية">
+            <div class="course-level intermediate">متوسط</div>
+          </div>
+          <div class="course-content">
+            <h3>مهارات الكتابة الإنجليزية</h3>
+            <p>تعلم أساليب الكتابة باللغة الإنجليزية بأسلوب احترافي</p>
+            <div class="course-meta">
+              <span><i class="fas fa-book"></i> 10 وحدات</span>
+              <span><i class="fas fa-clock"></i> 18 ساعة</span>
+            </div>
+            <a href="course-details.html" class="btn btn-outline w-100">عرض التفاصيل</a>
+          </div>
+        </div>
+        
+        <!-- Course 3 -->
+        <div class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="المفردات الأساسية">
+            <div class="course-level beginner">مبتدئ</div>
+          </div>
+          <div class="course-content">
+            <h3>المفردات الأساسية في اللغة الإنجليزية</h3>
+            <p>تعلم أكثر من 1000 كلمة شائعة في الاستخدام اليومي</p>
+            <div class="course-meta">
+              <span><i class="fas fa-book"></i> 8 وحدات</span>
+              <span><i class="fas fa-clock"></i> 12 ساعة</span>
+            </div>
+            <a href="course-details.html" class="btn btn-outline w-100">عرض التفاصيل</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="logo">منصة التعليم</div>
+          <p>منصة تعليمية متخصصة في تطوير مهارات اللغة الإنجليزية من خلال دورات وفيديوهات تعليمية عالية الجودة</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="courses.html">الدورات</a></li>
+            <li><a href="about.html">عن المنصة</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>الدورات</h4>
+          <ul>
+            <li><a href="#">أساسيات اللغة الإنجليزية</a></li>
+            <li><a href="#">المحادثة الإنجليزية</a></li>
+            <li><a href="#">قواعد اللغة الإنجليزية المتقدمة</a></li>
+            <li><a href="#">مهارات الكتابة الإنجليزية</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <div class="contact-info">
+            <div><i class="fas fa-envelope"></i> info@learnenglish.com</div>
+            <div><i class="fas fa-phone"></i> +966 12 345 6789</div>
+            <div><i class="fas fa-map-marker-alt"></i>عمان، الاردن</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 منصة التعليم. جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Course details specific scripts
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-tab');
+          
+          // Deactivate all tabs and hide content
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Activate clicked tab and show content
+          this.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // Unit toggle functionality
+      const unitHeaders = document.querySelectorAll('.unit-header');
+      
+      unitHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const unit = this.parentElement;
+          unit.classList.toggle('active');
+        });
+      });
+      
+      // Video play button
+      const videoContainer = document.querySelector('.course-video-container');
+      const playButton = document.querySelector('.video-play-button');
+      
+      if (videoContainer && playButton) {
+        videoContainer.addEventListener('click', function() {
+          alert('هذا الفيديو متاح فقط بعد التسجيل في الدورة');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

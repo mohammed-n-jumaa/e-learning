@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة التعليم الإلكتروني | إنشاء حساب جديد</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .auth-section {
+      min-height: calc(100vh - 70px);
+      padding: 60px 0;
+      background: linear-gradient(to right, var(--edu-light-purple), var(--edu-light-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .auth-container {
+      width: 100%;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+    
+    .auth-card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+    }
+    
+    .auth-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .auth-header .logo {
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .auth-header h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .auth-header p {
+      color: #666;
+    }
+    
+    .auth-form .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .auth-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .auth-form input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    
+    .auth-form input:focus {
+      border-color: var(--edu-blue);
+      box-shadow: 0 0 0 2px rgba(110, 133, 178, 0.2);
+      outline: none;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .auth-form .terms {
+      display: flex;
+      align-items: flex-start;
+      margin: 15px 0;
+    }
+    
+    .auth-form .terms input {
+      width: auto;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+    
+    .auth-form .submit-btn {
+      width: 100%;
+      padding: 14px;
+    }
+    
+    .auth-divider {
+      position: relative;
+      text-align: center;
+      margin: 25px 0;
+    }
+    
+    .auth-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 45%;
+      height: 1px;
+      background-color: #ddd;
+    }
+    
+    .auth-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 45%;
+      height: 1px;
+      background-color: #ddd;
+    }
+    
+    .auth-divider span {
+      background-color: white;
+      padding: 0 10px;
+      position: relative;
+      z-index: 1;
+      color: #777;
+    }
+    
+    .social-login {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      border: 1px solid #ddd;
+    }
+    
+    .social-btn i {
+      margin-left: 10px;
+    }
+    
+    .google-btn {
+      color: #ea4335;
+    }
+    
+    .google-btn:hover {
+      background-color: #fbe9e7;
+    }
+    
+    .facebook-btn {
+      color: #3b5998;
+    }
+    
+    .facebook-btn:hover {
+      background-color: #e8f0fe;
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+    }
+    
+    .auth-footer a {
+      color: var(--edu-blue);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .auth-footer a:hover {
+      color: var(--edu-dark);
+    }
+    
+    .error-message {
+      color: #e53935;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">منصة التعليم</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="courses.html">الدورات</a></li>
+          <li><a href="about.html">عن المنصة</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="login.html" class="btn btn-outline">تسجيل الدخول</a>
+        <a href="register.html" class="btn btn-primary active">إنشاء حساب</a>
+      </div>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Section -->
+  <section class="auth-section">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <a href="index.html" class="logo">منصة التعليم</a>
+          <h2>إنشاء حساب جديد</h2>
+          <p>سجل حسابك للوصول إلى الدورات التعليمية المميزة</p>
+        </div>
+        
+        <form class="auth-form" id="registerForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">الاسم الأول</label>
+              <input type="text" id="firstName" name="firstName" placeholder="أدخل اسمك الأول" required>
+              <div class="error-message" id="firstNameError"></div>
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName">الاسم الأخير</label>
+              <input type="text" id="lastName" name="lastName" placeholder="أدخل اسمك الأخير" required>
+              <div class="error-message" id="lastNameError"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+            <div class="error-message" id="emailError"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" required>
+            <div class="error-message" id="phoneError"></div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="password">كلمة المرور</label>
+              <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+              <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div class="form-group">
+              <label for="confirmPassword">تأكيد كلمة المرور</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="أعد إدخال كلمة المرور" required>
+              <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+          </div>
+          
+          <div class="terms">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">أوافق على <a href="#">الشروط والأحكام</a> وقرأت <a href="#">سياسة الخصوصية</a></label>
+          </div>
+          <div class="error-message" id="termsError"></div>
+          
+          <button type="submit" class="btn btn-primary submit-btn">إنشاء حساب</button>
+        </form>
+        
+        <div class="auth-divider">
+          <span>أو</span>
+        </div>
+        
+        <div class="social-login">
+          <a href="#" class="social-btn google-btn">
+            <i class="fab fa-google"></i>
+            جوجل
+          </a>
+          <a href="#" class="social-btn facebook-btn">
+            <i class="fab fa-facebook-f"></i>
+            فيسبوك
+          </a>
+        </div>
+        
+        <div class="auth-footer">
+          لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const registerForm = document.getElementById('registerForm');
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameInput = document.getElementById('lastName');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const termsInput = document.getElementById('terms');
+      
+      const firstNameError = document.getElementById('firstNameError');
+      const lastNameError = document.getElementById('lastNameError');
+      const emailError = document.getElementById('emailError');
+      const phoneError = document.getElementById('phoneError');
+      const passwordError = document.getElementById('passwordError');
+      const confirmPasswordError = document.getElementById('confirmPasswordError');
+      const termsError = document.getElementById('termsError');
+      
+      // Form validation
+      registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+        
+        // Reset error messages
+        firstNameError.textContent = '';
+        lastNameError.textContent = '';
+        emailError.textContent = '';
+        phoneError.textContent = '';
+        passwordError.textContent = '';
+        confirmPasswordError.textContent = '';
+        termsError.textContent = '';
+        
+        // Validate first name
+        if (!firstNameInput.value.trim()) {
+          firstNameError.textContent = 'يرجى إدخال الاسم الأول';
+          isValid = false;
+        }
+        
+        // Validate last name
+        if (!lastNameInput.value.trim()) {
+          lastNameError.textContent = 'يرجى إدخال الاسم الأخير';
+          isValid = false;
+        }
+        
+        // Validate email
+        if (!emailInput.value) {
+          emailError.textContent = 'يرجى إدخال البريد الإلكتروني';
+          isValid = false;
+        } else if (!isValidEmail(emailInput.value)) {
+          emailError.textContent = 'يرجى إدخال بريد إلكتروني صحيح';
+          isValid = false;
+        }
+        
+        // Validate phone
+        if (!phoneInput.value) {
+          phoneError.textContent = 'يرجى إدخال رقم الهاتف';
+          isValid = false;
+        }
+        
+        // Validate password
+        if (!passwordInput.value) {
+          passwordError.textContent = 'يرجى إدخال كلمة المرور';
+          isValid = false;
+        } else if (passwordInput.value.length < 8) {
+          passwordError.textContent = 'كلمة المرور يجب أن تكون 8 أحرف على الأقل';
+          isValid = false;
+        }
+        
+        // Validate confirm password
+        if (!confirmPasswordInput.value) {
+          confirmPasswordError.textContent = 'يرجى تأكيد كلمة المرور';
+          isValid = false;
+        } else if (confirmPasswordInput.value !== passwordInput.value) {
+          confirmPasswordError.textContent = 'كلمتا المرور غير متطابقتين';
+          isValid = false;
+        }
+        
+        // Validate terms acceptance
+        if (!termsInput.checked) {
+          termsError.textContent = 'يجب الموافقة على الشروط والأحكام';
+          isValid = false;
+        }
+        
+        if (isValid) {
+          // Simulate registration success (replace with actual registration logic)
+          alert('تم إنشاء الحساب بنجاح!');
+          window.location.href = 'index.html';
+        }
+      });
+      
+      // Helper function to validate email format
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    });
+  </script>
+</body>
+</html>
